@@ -1,0 +1,26 @@
+version: "3.3"
+services:
+  sysadmin.compxtreme.ro-html:
+    image: 395500896865.dkr.ecr.eu-west-1.amazonaws.com/wordpress-snuffleupagus:5.7.2-php7.4-apache
+    container_name: sysadmin.compxtreme.ro-html
+    restart: always
+    ports:
+      - 172.17.0.1:8060:80
+    volumes:
+      - ./html:/var/www/html
+    depends_on:
+      - sysadmin.compxtreme.ro-mysql
+    networks:
+      - sysadmin.compxtreme.ro-network
+  sysadmin.compxtreme.ro-mysql:
+    image: mariadb:10.5.3
+    container_name: sysadmin.compxtreme.ro-mysql
+    restart: always
+    volumes:
+      - ./mysql/db:/var/lib/mysql
+      - ./mysql/export:/data
+    networks:
+      - sysadmin.compxtreme.ro-network
+networks:
+  sysadmin.compxtreme.ro-network:
+      driver: bridge
