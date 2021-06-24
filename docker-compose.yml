@@ -13,7 +13,7 @@ services:
     networks:
       - sysadmin.compxtreme.ro-network
   sysadmin.compxtreme.ro-mysql:
-    image: mariadb:10.5.3
+    image: mariadb:10.6.2
     container_name: sysadmin.compxtreme.ro-mysql
     restart: always
     volumes:
